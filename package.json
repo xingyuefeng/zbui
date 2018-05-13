@@ -1,0 +1,20 @@
+{
+  "name": "xyf-ui",
+  "version": "0.0.1",
+  "description": "a simple react ui ",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xingyuefeng/xyf-ui"
+  },
+  "keywords": [
+    "ui",
+    "react"
+  ],
+  "files": [
+    "lib"
+  ],
+  "author": "xyf15262870437",
+  "license": "ISC",
+  "homepage": "https://github.com/xingyuefeng/xyf-ui"
+}
