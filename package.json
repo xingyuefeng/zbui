@@ -1,8 +1,20 @@
 {
-  "name": "xyf-ui",
-  "version": "0.0.1",
+  "name": "zbui",
+  "version": "0.0.7",
   "description": "a simple react ui ",
-  "main": "lib/index.js",
+  "main": "zui/index.js",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/xingyuefeng/xyf-ui"
@@ -12,9 +24,10 @@
     "react"
   ],
   "files": [
+    "index.js",
     "lib"
   ],
   "author": "xyf15262870437",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/xingyuefeng/xyf-ui"
 }
