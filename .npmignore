@@ -4,7 +4,8 @@
 /es5
 /dll
 /.vscode
-/doc/node_modules
+/src
+/node_modules
 .cache
 
 __snapshots__
@@ -26,3 +27,15 @@ yarn-error.log*
 *.log
 *.log.*
 *.json.gzip
+
+index.html
+.eslintrc
+.gitignore
+.babelrc
+app.js
+
+webpack.config.dev.js
+webpack.config.prod.js
+
+/doc
+index.js

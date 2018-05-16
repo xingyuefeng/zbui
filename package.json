@@ -1,33 +1,72 @@
 {
   "name": "zbui",
-  "version": "0.0.7",
-  "description": "a simple react ui ",
-  "main": "zui/index.js",
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+  "version": "0.0.1",
+  "description": "a simple react ui",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.prod.js",
+    "start": "webpack --config webpack.config.dev.js",
+    "clean": "rimraf ./lib && mkdir lib",
+    "bable": "npm run clean && npx babel src --out-dir lib ",
+    "doc": "bisheng start -c ./doc/site/bisheng.config.js --no-livereload",
+    "doc-site": "bisheng build --ssr -c ./doc/site/bisheng.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/xingyuefeng/xyf-ui"
+    "url": "git+https://github.com/xingyuefeng/x-ui.git"
   },
   "keywords": [
-    "ui",
-    "react"
+    "react-ui"
   ],
-  "files": [
-    "index.js",
-    "lib"
-  ],
-  "author": "xyf15262870437",
+  "author": "xing15262870437",
   "license": "MIT",
-  "homepage": "https://github.com/xingyuefeng/xyf-ui"
+  "bugs": {
+    "url": "https://github.com/xingyuefeng/x-ui/issues"
+  },
+  "homepage": "https://github.com/xingyuefeng/x-ui#readme",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "tinper-bee": "^1.4.0",
+    "antd": "^2.12.2",
+    "antd-tools": "^5.1.5",
+    "bezier-easing": "^2.0.3",
+    "color-standalone": "^0.11.6",
+    "rc-queue-anim": "^1.2.0",
+    "rc-scroll-anim": "^1.0.7",
+    "rc-tween-one": "^1.3.1",
+    "react-color": "^2.13.4",
+    "react-copy-to-clipboard": "^5.0.0",
+    "react-document-title": "^2.0.3",
+    "react-github-button": "^0.1.11",
+    "react-intl": "^2.3.0"
+  },
+  "devDependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "bisheng": "^0.24.2",
+    "bisheng-plugin-antd": "^0.15.0",
+    "bisheng-plugin-description": "^0.1.1",
+    "bisheng-plugin-react": "^0.5.0",
+    "bisheng-plugin-toc": "^0.4.0",
+    "css-split-webpack-plugin": "^0.2.3",
+    "dora-plugin-upload": "^0.3.2"
+  }
 }
