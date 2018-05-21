@@ -1,47 +1,68 @@
-const { resolve } = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './app.js',
+  mode: 'development',
+  entry: './index.js',
   output: {
-    pathinfo: true,
-    filename: 'static/js/bundle.js',
-    path: resolve(__dirname, 'dist')
+    // publicPath: '/', // 静态资源文件引用时的路径（加在引用静态资源前面的）
+    // pathinfo: true,
+    filename: '[name].[hash].js',
+    path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
-      { 
-        test: /\.js$/,
+      {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader" 
+        use: [
+          'babel-loader',
+          // "eslint-loader",
+        ],
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [{
-            loader: "style-loader"
+          loader: 'style-loader',
         }, {
-            loader: "css-loader"
+          loader: 'css-loader',
         }, {
-            loader: "less-loader"
-        }]
-      }
-    ]
+          loader: 'less-loader',
+        }],
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
+    ],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, './dist'),
+    compress: true, // gizp 加速
+    hot: true,
+    inline: true,
+    port: 8888,
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    }),
     new HtmlWebpackPlugin({
       title: 'zbui',
-      template: 'index.html'
+      template: 'index.html',
     }),
-  ]
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };

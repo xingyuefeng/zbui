@@ -1,19 +1,23 @@
-const { resolve } = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  mode: 'production',
+  entry: './index.js',
   output: {
-    filename: 'index.js',
-    path: resolve(__dirname, 'lib')
+    // pathinfo: true,
+    filename: '[name].[hash].js',
+    path: path.resolve(__dirname, 'dist'),
+    // publicPath: './' // 静态资源文件引用时的路径（加在引用静态资源前面的）
   },
   module: {
     rules: [
       { 
-        test: /\.js$/,
+        test: /\(.js)$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
-        loader: "babel-loader" 
       },
       {
         test: /\.css$/,
@@ -34,8 +38,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    new HtmlWebpackPlugin({
+      title: 'zbui',
+      template: './index.html'
+    }),
   ]
 };
