@@ -20,7 +20,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           'babel-loader',
-          // "eslint-loader",
+          'eslint-loader',
         ],
       },
       {
@@ -54,7 +54,7 @@ module.exports = {
     compress: true, // gizp 加速
     hot: true,
     inline: true,
-    port: 8888,
+    port: 7777,
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
