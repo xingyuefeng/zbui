@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -14,33 +13,33 @@ module.exports = {
   },
   module: {
     rules: [
-      { 
+      {
         test: /\(.js)$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [{
-            loader: "style-loader"
+          loader: 'style-loader',
         }, {
-            loader: "css-loader"
+          loader: 'css-loader',
         }, {
-            loader: "less-loader"
-        }]
-      }
-    ]
+          loader: 'less-loader',
+        }],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'zbui',
-      template: './index.html'
+      template: './index.html',
     }),
-  ]
+  ],
 };

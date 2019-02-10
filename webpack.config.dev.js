@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
     // publicPath: '/', // 静态资源文件引用时的路径（加在引用静态资源前面的）
     // pathinfo: true,
@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.less$/,
@@ -34,6 +34,8 @@ module.exports = {
           loader: 'style-loader',
         }, {
           loader: 'css-loader',
+        }, {
+          loader: 'postcss-loader',
         }, {
           loader: 'less-loader',
         }],
