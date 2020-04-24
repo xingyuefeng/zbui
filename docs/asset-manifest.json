@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/xingyuefeng/zbui/static/css/main.0b5c7ea4.chunk.css",
-    "main.js": "/xingyuefeng/zbui/static/js/main.9530ab81.chunk.js",
-    "main.js.map": "/xingyuefeng/zbui/static/js/main.9530ab81.chunk.js.map",
-    "runtime-main.js": "/xingyuefeng/zbui/static/js/runtime-main.06cac0b8.js",
-    "runtime-main.js.map": "/xingyuefeng/zbui/static/js/runtime-main.06cac0b8.js.map",
-    "static/js/2.fe07ce96.chunk.js": "/xingyuefeng/zbui/static/js/2.fe07ce96.chunk.js",
-    "static/js/2.fe07ce96.chunk.js.map": "/xingyuefeng/zbui/static/js/2.fe07ce96.chunk.js.map",
-    "static/js/3.93abbcac.chunk.js": "/xingyuefeng/zbui/static/js/3.93abbcac.chunk.js",
-    "static/js/3.93abbcac.chunk.js.map": "/xingyuefeng/zbui/static/js/3.93abbcac.chunk.js.map",
-    "index.html": "/xingyuefeng/zbui/index.html",
-    "precache-manifest.99a98b4271d8418e7a1704d61b15fec8.js": "/xingyuefeng/zbui/precache-manifest.99a98b4271d8418e7a1704d61b15fec8.js",
-    "service-worker.js": "/xingyuefeng/zbui/service-worker.js",
-    "static/css/main.0b5c7ea4.chunk.css.map": "/xingyuefeng/zbui/static/css/main.0b5c7ea4.chunk.css.map",
-    "static/js/2.fe07ce96.chunk.js.LICENSE.txt": "/xingyuefeng/zbui/static/js/2.fe07ce96.chunk.js.LICENSE.txt"
+    "main.css": "/zbui/static/css/main.0b5c7ea4.chunk.css",
+    "main.js": "/zbui/static/js/main.4c9fe0a5.chunk.js",
+    "main.js.map": "/zbui/static/js/main.4c9fe0a5.chunk.js.map",
+    "runtime-main.js": "/zbui/static/js/runtime-main.4edab022.js",
+    "runtime-main.js.map": "/zbui/static/js/runtime-main.4edab022.js.map",
+    "static/js/2.fe07ce96.chunk.js": "/zbui/static/js/2.fe07ce96.chunk.js",
+    "static/js/2.fe07ce96.chunk.js.map": "/zbui/static/js/2.fe07ce96.chunk.js.map",
+    "static/js/3.93abbcac.chunk.js": "/zbui/static/js/3.93abbcac.chunk.js",
+    "static/js/3.93abbcac.chunk.js.map": "/zbui/static/js/3.93abbcac.chunk.js.map",
+    "index.html": "/zbui/index.html",
+    "precache-manifest.e6f5aae5c684a31874584be0fe761cd7.js": "/zbui/precache-manifest.e6f5aae5c684a31874584be0fe761cd7.js",
+    "service-worker.js": "/zbui/service-worker.js",
+    "static/css/main.0b5c7ea4.chunk.css.map": "/zbui/static/css/main.0b5c7ea4.chunk.css.map",
+    "static/js/2.fe07ce96.chunk.js.LICENSE.txt": "/zbui/static/js/2.fe07ce96.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.06cac0b8.js",
+    "static/js/runtime-main.4edab022.js",
     "static/js/2.fe07ce96.chunk.js",
     "static/css/main.0b5c7ea4.chunk.css",
-    "static/js/main.9530ab81.chunk.js"
+    "static/js/main.4c9fe0a5.chunk.js"
   ]
 }
