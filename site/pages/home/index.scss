@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .desc {
+    margin: 3rem 0;
+  }
+  .view {
+    color: #fff;
+    text-decoration: none;
+  }
+}

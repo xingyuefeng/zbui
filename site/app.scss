@@ -1,0 +1,14 @@
+// config
+@import "../components/styles/variables";
+
+//layout
+@import "../components/styles/normalize";
+
+
+@import "./components/Layout/index";
+
+@import "./pages/home/index";
+
+@import "./pages/component/index";
+
+@import "./components/Slider/index";

@@ -1,0 +1,24 @@
+.app-container {
+  font-size: $font-size-lg;
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: $box-shadow-sm;
+    line-height: 3rem;
+    padding: 0 10rem 0 3rem;
+    a {
+      color: $blue;
+      text-decoration: none;
+    }
+    .logo a{
+      font-size: $font-size-lg * 1.5;
+      
+    }
+    .nav {
+      a {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}

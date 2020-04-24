@@ -1,0 +1,17 @@
+.ps-card {
+  margin-bottom: $card-margin;
+  border: $border-width solid $border-color;
+}
+
+
+
+
+.ps-card-head {
+  padding: $card-head-padding;
+  border-bottom: $border-width solid $border-color;
+}
+
+
+.ps-card-body {
+  padding: $card-body-padding;
+}
