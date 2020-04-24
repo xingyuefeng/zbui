@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/zbui/docs/static/css/main.0b5c7ea4.chunk.css",
-    "main.js": "/zbui/docs/static/js/main.65c31a37.chunk.js",
-    "main.js.map": "/zbui/docs/static/js/main.65c31a37.chunk.js.map",
-    "runtime-main.js": "/zbui/docs/static/js/runtime-main.a7f82de5.js",
-    "runtime-main.js.map": "/zbui/docs/static/js/runtime-main.a7f82de5.js.map",
-    "static/js/2.fe07ce96.chunk.js": "/zbui/docs/static/js/2.fe07ce96.chunk.js",
-    "static/js/2.fe07ce96.chunk.js.map": "/zbui/docs/static/js/2.fe07ce96.chunk.js.map",
-    "static/js/3.93abbcac.chunk.js": "/zbui/docs/static/js/3.93abbcac.chunk.js",
-    "static/js/3.93abbcac.chunk.js.map": "/zbui/docs/static/js/3.93abbcac.chunk.js.map",
-    "index.html": "/zbui/docs/index.html",
-    "precache-manifest.bd4e27624847d6d39fbbd8e9daf9030e.js": "/zbui/docs/precache-manifest.bd4e27624847d6d39fbbd8e9daf9030e.js",
-    "service-worker.js": "/zbui/docs/service-worker.js",
-    "static/css/main.0b5c7ea4.chunk.css.map": "/zbui/docs/static/css/main.0b5c7ea4.chunk.css.map",
-    "static/js/2.fe07ce96.chunk.js.LICENSE.txt": "/zbui/docs/static/js/2.fe07ce96.chunk.js.LICENSE.txt"
+    "main.css": "/zbui/static/css/main.0b5c7ea4.chunk.css",
+    "main.js": "/zbui/static/js/main.4c9fe0a5.chunk.js",
+    "main.js.map": "/zbui/static/js/main.4c9fe0a5.chunk.js.map",
+    "runtime-main.js": "/zbui/static/js/runtime-main.4edab022.js",
+    "runtime-main.js.map": "/zbui/static/js/runtime-main.4edab022.js.map",
+    "static/js/2.fe07ce96.chunk.js": "/zbui/static/js/2.fe07ce96.chunk.js",
+    "static/js/2.fe07ce96.chunk.js.map": "/zbui/static/js/2.fe07ce96.chunk.js.map",
+    "static/js/3.93abbcac.chunk.js": "/zbui/static/js/3.93abbcac.chunk.js",
+    "static/js/3.93abbcac.chunk.js.map": "/zbui/static/js/3.93abbcac.chunk.js.map",
+    "index.html": "/zbui/index.html",
+    "precache-manifest.e6f5aae5c684a31874584be0fe761cd7.js": "/zbui/precache-manifest.e6f5aae5c684a31874584be0fe761cd7.js",
+    "service-worker.js": "/zbui/service-worker.js",
+    "static/css/main.0b5c7ea4.chunk.css.map": "/zbui/static/css/main.0b5c7ea4.chunk.css.map",
+    "static/js/2.fe07ce96.chunk.js.LICENSE.txt": "/zbui/static/js/2.fe07ce96.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a7f82de5.js",
+    "static/js/runtime-main.4edab022.js",
     "static/js/2.fe07ce96.chunk.js",
     "static/css/main.0b5c7ea4.chunk.css",
-    "static/js/main.65c31a37.chunk.js"
+    "static/js/main.4c9fe0a5.chunk.js"
   ]
 }
