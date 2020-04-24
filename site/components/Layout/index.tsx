@@ -6,7 +6,7 @@ const Layout:FC = (props) => {
     <div className="app-container">
       <div className="app-header">
         <div className="logo">
-          <Link to="/">Zbui</Link>
+          <Link to="/zbui">Zbui</Link>
         </div>
         <div className="nav">
           <Link to="/components">组件</Link>

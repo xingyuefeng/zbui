@@ -10,7 +10,7 @@ function App() {
 
     <Router>
       <Layout>
-        <Route path="/" exact component={Home} />
+        <Route path="/zbui" exact component={Home} />
         <Route path="/components" component={Components} />
       </Layout>
     </Router>
