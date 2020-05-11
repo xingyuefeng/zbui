@@ -10,6 +10,7 @@ const Layout:FC = (props) => {
         </div>
         <div className="nav">
           <Link to="/components">组件</Link>
+          <a href="https://github.com/xingyuefeng/zbui" target="_blank" rel="noopener noreferrer">Github</a>
         </div>
       </div>
       {props.children}

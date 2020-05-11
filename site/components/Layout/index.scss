@@ -6,7 +6,7 @@
     align-items: center;
     box-shadow: $box-shadow-sm;
     line-height: 3rem;
-    padding: 0 10rem 0 3rem;
+    padding: 0 7rem 0 1rem;
     a {
       color: $blue;
       text-decoration: none;
@@ -16,8 +16,10 @@
       
     }
     .nav {
+      margin-left: 1rem;
       a {
         font-size: $font-size-lg;
+        padding: 0 1rem;
       }
     }
   }
