@@ -18,8 +18,9 @@ npm test -- --coverage
 
 ## 计划
 
-- [ ] modal `coding`
+- [ ] Portal `coding`
 - [ ] icons
+- [ ] Dialog
 - [ ] Input
 - [ ] Radio
 - [ ] Checkbox
