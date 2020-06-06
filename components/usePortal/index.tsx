@@ -55,7 +55,9 @@ export default function usePortal({
   onPortalClick,
   ...eventHandlers
 }: UsePortalOptions = {}) {
+
   const [isOpen, makeOpen] = useState(defaultIsOpen);
+
   // we use this ref because `isOpen` is stale for handleOutsideMouseClick
   const open = useRef(isOpen);
 
@@ -79,7 +81,7 @@ export default function usePortal({
   const createCustomEvent = (e: any) => {
     if (!e) return { portal, targetEl, event: e };
     const event = e || {};
-    if (event.persist) event.persist();
+    if (event.persist) event.persist(); 
     event.portal = portal;
     event.targetEl = targetEl;
     event.event = e;
@@ -95,6 +97,7 @@ export default function usePortal({
     eventHandlers
   ).reduce<any>((acc, [handlerName, eventHandler]) => {
     acc[handlerName] = (event?: SyntheticEvent<any, Event>) => {
+
       eventHandler(createCustomEvent(event));
     };
     return acc;
@@ -106,6 +109,7 @@ export default function usePortal({
       // for some reason, when we don't have the event argument, there
       // is a weird race condition. Would like to see if we can remove
       // setTimeout, but for now this works
+      console.log('targetEl===>', targetEl);
       if (targetEl.current == null) {
         setTimeout(() => setOpen(true), 0);
         throw Error(errorMessage1);
@@ -120,10 +124,12 @@ export default function usePortal({
 
   const closePortal = useCallback((e: any) => {
     const customEvent = createCustomEvent(e)
+    console.log('targetEl===>', targetEl);
     if (onClose && open.current) onClose(customEvent)
     if (open.current) setOpen(false)
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClose, setOpen])
+
 
   const togglePortal = useCallback((e: SyntheticEvent<any, Event>): void => 
     open.current ? closePortal(e) : openPortal(e),
@@ -133,19 +139,21 @@ export default function usePortal({
   const handleKeydown = useCallback((e: KeyboardEvent): void => 
     (e.key === 'Escape' && closeOnEsc) ? closePortal(e) : undefined,
     [closeOnEsc, closePortal]
-  )
+  ) 
 
   const handleOutsideMouseClick = useCallback((e: MouseEvent): void => {
-    const containsTarget = (target: HTMLElRef) => target.current.contains(e.target as HTMLElement)
+    closePortal(e)
+    const containsTarget = (target: HTMLElRef) => target.current && target.current.contains ? target.current.contains(e.target as HTMLElement) : null
     if (containsTarget(portal) || (e as any).button !== 0 || !open.current || containsTarget(targetEl)) return
     if (closeOnOutsideClick) closePortal(e)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [closePortal, closeOnOutsideClick, portal])
 
   const handleMouseDown = useCallback((e: MouseEvent): void => {
+  
     if (!(portal.current instanceof HTMLElement)) return
     const customEvent = createCustomEvent(e)
-    if (portal.current.contains(customEvent.target as HTMLElement) && onPortalClick) onPortalClick(customEvent)
+    if (portal.current.contains && portal.current.contains(customEvent.target as HTMLElement) && onPortalClick) onPortalClick(customEvent)
     handleOutsideMouseClick(e)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleOutsideMouseClick])
@@ -154,7 +162,12 @@ export default function usePortal({
   useEffect(() => {
     document.addEventListener('keydown', handleKeydown)
     document.addEventListener('mousedown', handleMouseDown as any)
+    if (!(elToMountTo instanceof HTMLElement) || !(portal.current instanceof HTMLElement)) return
+    
     const node = portal.current
+
+    elToMountTo.appendChild(portal.current)
+
     return () => {
       document.removeEventListener('keydown', handleKeydown)
       document.removeEventListener('mousedown', handleMouseDown as any)
@@ -164,10 +177,40 @@ export default function usePortal({
 
   const Portal = useCallback(({ children }: { children: ReactNode }) => {
     if (portal.current != null) return createPortal(children, portal.current)
+   
     return null
   }, [portal])
 
-  return [openPortal, closePortal, open.current, Portal, togglePortal, targetEl, portal]
-
-
+  // return [openPortal, closePortal, open.current, Portal, togglePortal, targetEl, portal]
+  // return {
+  //   isOpen: open.current,
+  //   openPortal,
+  //   ref: targetEl,
+  //   closePortal,
+  //   togglePortal,
+  //   Portal,
+  //   portalRef: portal,
+  //   ...customEventHandlers,
+  //   bind: { // used if you want to spread all html attributes onto the target element
+  //     ref: targetEl,
+  //     ...customEventHandlers
+  //   }
+  // }
+  return Object.assign(
+    [openPortal, closePortal, open.current, Portal, togglePortal, targetEl, portal],
+    {
+      isOpen: open.current,
+      openPortal,
+      ref: targetEl,
+      closePortal,
+      togglePortal,
+      Portal,
+      portalRef: portal,
+      ...customEventHandlers,
+      bind: { // used if you want to spread all html attributes onto the target element
+        ref: targetEl,
+        ...customEventHandlers
+      }
+    }
+  )
 }

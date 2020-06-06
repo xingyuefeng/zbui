@@ -1,4 +1,4 @@
-import React, { ReactNode, FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
+import React, { ReactNode, FC, ButtonHTMLAttributes, AnchorHTMLAttributes, forwardRef, MutableRefObject } from 'react';
 import classnames from 'classnames';
 
 export type ButtonSize = 'lg' | 'sm'
@@ -11,6 +11,7 @@ interface BaseButtonProps  {
   href?: string;
   size?: ButtonSize;
   type?: ButtonType;
+  ref?: MutableRefObject<HTMLButtonElement> &  MutableRefObject<HTMLAnchorElement> ;
 }
 
 type NativeButtonProps = BaseButtonProps & Omit<ButtonHTMLAttributes<HTMLElement>, 'type'>
@@ -19,7 +20,7 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
 
-const Button: FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -39,6 +40,7 @@ const Button: FC<ButtonProps> = (props) => {
     <a
       className={classes}
       href={href}
+      ref={ref}
       {...restProps}
     >
       {children}
@@ -48,12 +50,13 @@ const Button: FC<ButtonProps> = (props) => {
     <button
       className={classes}
       disabled={disabled}
+      ref={ref}
       {...restProps}
     >
       {children}
     </button>)
   }
-}
+})
 
 Button.defaultProps = {
   type: 'default',
