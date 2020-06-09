@@ -7,9 +7,9 @@ import * as zbui from '../../../components';
 export default class Code extends Component {
   containerId: string;
   document: any;
-  title: string;
+  title?: string;
   source: any;
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.containerId = `${parseInt(Math.random() * 1e9 + '', 10).toString(36)}`;
   }
@@ -19,7 +19,7 @@ export default class Code extends Component {
     this.renderSource(children);
   }
 
-  renderSource(codeMd) {
+  renderSource(codeMd: any) {
     const value = codeMd
       .replace(/import\s+\{\s+(.*)\s+\}\s+from\s+'zbui';/, 'const { $1 } = zbui;')
       .replace(/ReactDOM.render\(\s?([^]+?)(,\s?mountNode\s?\))/g, `
@@ -35,7 +35,7 @@ export default class Code extends Component {
     const args = ['React', 'ReactDOM', 'zbui', code];
     const argv = [React, ReactDOM, zbui];
     // eslint-disable-next-line no-new-func
-    new Function(...args)(...argv);
+    new Function(...args as any)(...argv);
   }
 
 

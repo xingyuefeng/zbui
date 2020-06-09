@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="desc">
-        基于TypeScript与React Hooks开发的ui组件库 🚀🚀🚀
+        基于TypeScript与React Hooks开发的ui组件库 <span role="img" aria-labelledby="rocket">>🚀🚀🚀</span>
       </div>
       <div className="desc">Happy Coding</div>
       <Button type="primary">

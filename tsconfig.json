@@ -18,13 +18,21 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["/"],
+      "@/*": ["*"],
+      "cc/*.md": ["/"],
     }
   },
   "include": [
-    "src",
-    "components"
+    "*",
+    "site/**/*.ts",
+    "site/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+  ],
+  "exclude": [
+    "node_modules",
+
   ]
 }

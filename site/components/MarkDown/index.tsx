@@ -6,7 +6,8 @@ import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coy } from "react-syntax-highlighter/dist/esm/styles/prism";
 // 设置高亮的语言
 // sass, scss, tsx
-import { jsx, javascript } from "react-syntax-highlighter/dist/esm/languages/prism";
+import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
+import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
 
 import Code from './Code';
 
@@ -27,13 +28,13 @@ class CodeBlock extends Component<{}, ICodeBlockState> {
 
   nodeList: any[];
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     // this.style = null;
     this.components = new Map();
     this.nodeList = [];
     this.state = {
-      html: null
+      html: ''
     }
   }
 
@@ -52,7 +53,7 @@ class CodeBlock extends Component<{}, ICodeBlockState> {
     })
   }
   renderDOM() {
-    for (const [id, component] of this.components) {
+    for (const [id, component] of this.components as any) {
       const div = document.getElementById(id);
       this.nodeList.push(div);
       if (div instanceof HTMLElement) {

@@ -1,64 +1,87 @@
-import React, { useState } from 'react'
-import { Route, Switch } from 'react-router-dom';
-import loadable from '@loadable/component'
-import ReactMarkdown from 'react-markdown'
-import CodeBlock from '../../components/MarkDown';
-import Slider from '../../components/Slider';
-import siteConfig from '../../site.config';
-import home from '@/README.md'
+import React, { useState, ReactNode } from "react";
+import { Route, Switch } from "react-router-dom";
+import loadable from "@loadable/component";
+import ReactMarkdown from "react-markdown";
+import CodeBlock from "../../components/MarkDown";
+import Slider from "../../components/Slider";
+import siteConfig from "../../site.config";
+import home from "@/README.md";
+
+type MenuRoute = {
+  name: string;
+  description: string;
+  module: () => {};
+  [key:string]:any;
+};
 
 
-const LazyComponent = (props) => {
-  const [md, setMd] = useState(null);
-  loadable(props.route.module).load().then(module => {
-    setMd(module.default)
-  })  
-  return  <ReactMarkdown
-    source={md}
-    renderers={{
-      code: CodeBlock,
-    }}
-  />
+interface ConfigInfo {
+  [key: string]: any,
 }
 
-export default function Component() {
+const LazyComponent = (props: any) => {
+  const [md, setMd] = useState("");
+  loadable(props.route.module)
+    .load()
+    .then((module: any) => {
+      setMd(module.default);
+    });
+  return (
+    <ReactMarkdown
+      source={md}
+      renderers={{
+        code: CodeBlock,
+      }}
+    />
+  );
+};
 
-  const [routes, setRoutes] = useState([])
+export default function Component() {
+  const [routes, setRoutes] = useState<ReactNode[]>([]);
 
   if (routes.length === 0) {
-    renderRoutes()
+    renderRoutes(siteConfig);
   }
-  function renderRoutes(configs = siteConfig): void {
+  function renderRoutes(configs: ConfigInfo): void {
     const routeKyes = Object.keys(configs);
     routeKyes.forEach((item) => {
       if (Array.isArray(configs[item])) {
-        configs[item].forEach((route) => {
-          setRoutes(routes.concat(<Route key={route.name} path={`/components/${route.name}`} component={ () => <LazyComponent route={route} />} />))
+        (configs[item] as MenuRoute[]).forEach((route: MenuRoute) => {
+          setRoutes(
+            routes.concat(
+              <Route
+                key={route.name}
+                path={`/components/${route.name}`}
+                component={() => <LazyComponent route={route} />}
+              />
+            )
+          );
         });
       } else {
-        renderRoutes(siteConfig[item]);
+        let other = siteConfig as ConfigInfo
+        renderRoutes(other[item]);
       }
     });
-
   }
   return (
     <div className="component-container">
       <Slider menus={siteConfig} />
       <div className="component-content">
         <Switch>
-          {
-            routes
-          }
-          <Route path="*" component={
-            () => <ReactMarkdown
-              source={home}
-              renderers={{
-                code: CodeBlock,
-              }}
-            />}
+          {routes}
+          <Route
+            path="*"
+            component={() => (
+              <ReactMarkdown
+                source={home}
+                renderers={{
+                  code: CodeBlock,
+                }}
+              />
+            )}
           />
         </Switch>
       </div>
     </div>
-  )
+  );
 }

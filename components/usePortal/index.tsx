@@ -109,7 +109,6 @@ export default function usePortal({
       // for some reason, when we don't have the event argument, there
       // is a weird race condition. Would like to see if we can remove
       // setTimeout, but for now this works
-      console.log('targetEl===>', targetEl);
       if (targetEl.current == null) {
         setTimeout(() => setOpen(true), 0);
         throw Error(errorMessage1);
@@ -124,7 +123,6 @@ export default function usePortal({
 
   const closePortal = useCallback((e: any) => {
     const customEvent = createCustomEvent(e)
-    console.log('targetEl===>', targetEl);
     if (onClose && open.current) onClose(customEvent)
     if (open.current) setOpen(false)
      // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -181,21 +179,6 @@ export default function usePortal({
     return null
   }, [portal])
 
-  // return [openPortal, closePortal, open.current, Portal, togglePortal, targetEl, portal]
-  // return {
-  //   isOpen: open.current,
-  //   openPortal,
-  //   ref: targetEl,
-  //   closePortal,
-  //   togglePortal,
-  //   Portal,
-  //   portalRef: portal,
-  //   ...customEventHandlers,
-  //   bind: { // used if you want to spread all html attributes onto the target element
-  //     ref: targetEl,
-  //     ...customEventHandlers
-  //   }
-  // }
   return Object.assign(
     [openPortal, closePortal, open.current, Portal, togglePortal, targetEl, portal],
     {
