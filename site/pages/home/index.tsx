@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components";
+import { Button, Dialog } from "@/components";
 // import useEventListener from '@/components/hooks/useEventListener'
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
 
 
   return (
-    <div className="home">
+    <div className="home"> 
       <div className="desc">
         基于TypeScript与React Hooks开发的ui组件库 <span role="img" aria-labelledby="rocket">>🚀🚀🚀</span>
       </div>
@@ -22,6 +22,11 @@ export default function Home() {
           查看组件
         </Link>
       </Button>
+      <Dialog
+        visible={true}
+      >
+        <div>123</div>
+      </Dialog>
     </div>
   );
 }
