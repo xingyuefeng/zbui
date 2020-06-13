@@ -32,7 +32,7 @@ type EventListenerRef = MutableRefObject<
   }
 >;
 
-type UsePortalOptions = {
+export type UsePortalOptions = {
   closeOnOutsideClick?: boolean;
   closeOnEsc?: boolean;
   bindTo?: HTMLElement; // attach the portal to this node in the DOM
@@ -55,10 +55,9 @@ export default function usePortal({
   onPortalClick,
   ...eventHandlers
 }: UsePortalOptions = {}) {
-
   const [isOpen, makeOpen] = useState(defaultIsOpen);
-
   // we use this ref because `isOpen` is stale for handleOutsideMouseClick
+
   const open = useRef(isOpen);
 
   const setOpen = useCallback((v: boolean) => {
@@ -140,7 +139,6 @@ export default function usePortal({
   ) 
 
   const handleOutsideMouseClick = useCallback((e: MouseEvent): void => {
-    closePortal(e)
     const containsTarget = (target: HTMLElRef) => target.current && target.current.contains ? target.current.contains(e.target as HTMLElement) : null
     if (containsTarget(portal) || (e as any).button !== 0 || !open.current || containsTarget(targetEl)) return
     if (closeOnOutsideClick) closePortal(e)
@@ -179,6 +177,8 @@ export default function usePortal({
     return null
   }, [portal])
 
+ 
+
   return Object.assign(
     [openPortal, closePortal, open.current, Portal, togglePortal, targetEl, portal],
     {
@@ -187,6 +187,7 @@ export default function usePortal({
       ref: targetEl,
       closePortal,
       togglePortal,
+      setOpen,
       Portal,
       portalRef: portal,
       ...customEventHandlers,

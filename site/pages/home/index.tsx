@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Dialog } from "@/components";
 // import useEventListener from '@/components/hooks/useEventListener'
 
 export default function Home() {
-  // const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [visible, toggleDialog] = useState(false);
 
   // useEventListener('mousemove', (event: MouseEvent) => {
   //   setCoords({x: event.pageX, y: event.pageY})
@@ -22,10 +22,16 @@ export default function Home() {
           查看组件
         </Link>
       </Button>
+      <Button type="primary" onClick={ () => { toggleDialog(true) } }>
+        显示弹框
+      </Button>
       <Dialog
-        visible={true}
+        visible={visible}
+        title="这是弹框标题"
+        footer={ <Button onClick={ () => { toggleDialog(false)}}>关闭</Button>}
+        onClose={() => { toggleDialog(false)}}
       >
-        <div>123</div>
+        <div>你总觉着自己如今正是栖栖遑遑</div>
       </Dialog>
     </div>
   );
