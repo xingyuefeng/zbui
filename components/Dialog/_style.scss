@@ -1,7 +1,8 @@
 
 
 .#{$prefixCls} {
-  
+  // width: 600px;
+  // margin: 30px auto;
   &-mask {
     position: fixed;
     top: 0;
@@ -33,32 +34,62 @@
   &-content {
     position: relative;
     width: 600px;
-    margin: 30px auto;
+    margin: 10% auto;
     background-color: #ffffff;
     border: none;
     border-radius: 6px 6px;
     background-clip: padding-box;
-
+    // animation-duration: 0.3s;
+    // animation-fill-mode: both;
     // transition: opacity 300ms, transform 300ms;
+  }
+  .effect {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
   }
 
   &-alert-enter {
     opacity: 0;
-    transform: scale(0.1);
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+    animation-play-state: paused;
   }
   &-alert-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 300ms, transform 300ms;
+    animation-name: rcDialogZoomIn;
+    animation-play-state: running;
     
   }
   &-alert-exit {
-    opacity: 1;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+    animation-play-state: paused;
   }
   &-alert-exit-active {
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 300ms, transform 300ms;
+    animation-name: rcDialogZoomOut;
+    animation-play-state: running;
+  }
+
+  @keyframes rcDialogZoomIn {
+    0% {
+      opacity: 0;
+      transform: scale(0, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+  @keyframes rcDialogZoomOut {
+    0% {
+
+      transform: scale(1, 1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0, 0);
+    }
   }
 
 

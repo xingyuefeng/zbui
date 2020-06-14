@@ -18,8 +18,7 @@ export default (props: Dioalogprops) => {
 
   return (
     <Portal>
-        <Dialog {...props} />
-    
+      <Dialog {...props} />
     </Portal>
   )
 };

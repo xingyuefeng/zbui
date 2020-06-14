@@ -22,7 +22,7 @@ export default function Home() {
           查看组件
         </Link>
       </Button>
-      <Button type="primary" onClick={ () => { toggleDialog(true) } }>
+      <Button type="primary" onClick={ () => { toggleDialog(true) } } style={{position: 'absolute', left: 20, top: 400}}>
         显示弹框
       </Button>
       <Dialog

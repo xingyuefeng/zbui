@@ -1,9 +1,38 @@
-import React, { FC, CSSProperties, ReactNode } from "react";
+import React, { FC, CSSProperties, ReactNode, useState, useRef, useEffect  } from "react";
+import { findDOMNode } from 'react-dom'
 import { CSSTransition } from "react-transition-group";
 import classnames from "classnames";
 import Button from "../Button";
+import useEventListener from "../hooks/useEventListener";
 
 type IStringOrHtmlElement = string | HTMLElement;
+
+function getScroll(w: any, top?: boolean) {
+  let ret = w[`page${top ? 'Y' : 'X'}Offset`];
+  const method = `scroll${top ? 'Top' : 'Left'}`;
+  if (typeof ret !== 'number') {
+    const d = w.document;
+    ret = d.documentElement[method];
+    if (typeof ret !== 'number') {
+      ret = d.body[method];
+    }
+  }
+  return ret;
+}
+
+function offset(el: any) {
+  const rect = el.getBoundingClientRect();
+  const pos = {
+    left: rect.left,
+    top: rect.top,
+  };
+  const doc = el.ownerDocument;
+  const w = doc.defaultView || doc.parentWindow;
+  pos.left += getScroll(w);
+  pos.top += getScroll(w, true);
+  return pos;
+}
+
 
 export interface Dioalogprops {
   className?: string | undefined;
@@ -41,21 +70,44 @@ const Dialog: FC<Dioalogprops> = ({
   maskStyle,
   onClose = () => {},
 }) => {
+  const [mousePosition, serMousePosition] = useState({x: 0, y: 0});
+  const [elOffset, serElOffset] = useState({left: 0, top: 0});
+
+  const dialogRef = useRef() as any
+
+  useEventListener("click", (event: MouseEvent) => {
+    const dialogNode = findDOMNode(dialogRef.current);
+    const elOffset = offset(dialogNode);
+    serElOffset({
+      left: elOffset.left,
+      top: elOffset.top,
+    })
+    serMousePosition({ x: event.pageX, y: event.pageY });
+  });
+
+
+
   return (
     <div
       className={classnames(prefixCls, className, {
         [prefixCls + "-mask"]: mask,
         [prefixCls + "-mask-hidden"]: !visible,
       })}
-      // style={maskStyle}
+      style={maskStyle}
+     
     >
       <CSSTransition
         timeout={300}
         classNames={`${prefixCls}-alert`}
         in={visible}
-        onEnter={() => console.log("enter")}
+        style={{transformOrigin: `${mousePosition.x - elOffset.left}px ${mousePosition.y - elOffset.top}px`,}}
+
       >
-        <div className={`${prefixCls}-content`} >
+        <div
+          className={`${prefixCls}-content`}
+        
+          ref={dialogRef}
+        >
           {closable && (
             <Button
               className={`${prefixCls}-close`}
