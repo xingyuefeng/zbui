@@ -1,12 +1,15 @@
+
+
 .#{$prefixCls} {
+  
   &-mask {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: $gray-800;
-    // background-color: opacity($color: $gray-800, 0.6);
+    background-color: $black;
+    background-color: rgba( $black, .8);
     height: 100%;
     filter: alpha(opacity=50);
     z-index: 1050;
@@ -36,24 +39,25 @@
     border-radius: 6px 6px;
     background-clip: padding-box;
 
- 
+    // transition: opacity 300ms, transform 300ms;
   }
 
-  &alert-enter {
+  &-alert-enter {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.1);
   }
-  &alert-enter-active {
+  &-alert-enter-active {
     opacity: 1;
     transform: translateX(0);
     transition: opacity 300ms, transform 300ms;
+    
   }
-  &alert-exit {
+  &-alert-exit {
     opacity: 1;
   }
-  &alert-exit-active {
+  &-alert-exit-active {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.8);
     transition: opacity 300ms, transform 300ms;
   }
 
@@ -87,3 +91,17 @@
 
 
 
+// .my-node-enter {
+//   opacity: 0;
+// }
+// .my-node-enter-active {
+//   opacity: 1;
+//   transition: opacity 600ms;
+// }
+// .my-node-exit {
+//   opacity: 1;
+// }
+// .my-node-exit-active {
+//   opacity: 0;
+//   transition: opacity 200ms;
+// }

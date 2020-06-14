@@ -38,20 +38,24 @@ const Dialog: FC<Dioalogprops> = ({
   maskClosable = true,
   bodyStyle,
   footer,
-
+  maskStyle,
   onClose = () => {},
 }) => {
-  console.log('visible===>', visible)
   return (
-    <div className={classnames(prefixCls, prefixCls + "-mask", className)}>
+    <div
+      className={classnames(prefixCls, className, {
+        [prefixCls + "-mask"]: mask,
+        [prefixCls + "-mask-hidden"]: !visible,
+      })}
+      // style={maskStyle}
+    >
       <CSSTransition
         timeout={300}
-        // classNames={`${prefixCls}-content`}
-        classnames="zbalert"
+        classNames={`${prefixCls}-alert`}
         in={visible}
-        onEnter={() => console.log('enter')}
+        onEnter={() => console.log("enter")}
       >
-        <div className={`${prefixCls}-content`}>
+        <div className={`${prefixCls}-content`} >
           {closable && (
             <Button
               className={`${prefixCls}-close`}
