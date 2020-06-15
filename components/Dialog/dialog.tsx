@@ -71,23 +71,36 @@ const Dialog: FC<Dioalogprops> = ({
   onClose = () => {},
 }) => {
   const [mousePosition, serMousePosition] = useState({x: 0, y: 0});
-  const [elOffset, serElOffset] = useState({left: 0, top: 0});
+  const elOffset = useRef({left: 0, top: 0});
 
   const dialogRef = useRef() as any
-
+  // console.log(elOffset);
   useEventListener("click", (event: MouseEvent) => {
-    const dialogNode = findDOMNode(dialogRef.current);
-    const elOffset = offset(dialogNode);
-    serElOffset({
-      left: elOffset.left,
-      top: elOffset.top,
-    })
-    serMousePosition({ x: event.pageX, y: event.pageY });
+    if (visible) {
+      const dialogNode = findDOMNode(dialogRef.current);
+      const el = offset(dialogNode);
+      
+      elOffset.current = {
+        left: el.left, top: el.top
+      }
+      serMousePosition({ x: event.pageX, y: event.pageY });
+    } else {
+      elOffset.current = {
+        left: 0, top: 0
+      }
+      serMousePosition({ x: 0, y: 0});
+    }
+  
   });
 
 
-
   return (
+  //   <CSSTransition
+  //   timeout={300}
+  //   classNames={`${prefixCls}-alert-mask`}
+  //   in={visible}
+ 
+  // >
     <div
       className={classnames(prefixCls, className, {
         [prefixCls + "-mask"]: mask,
@@ -100,12 +113,11 @@ const Dialog: FC<Dioalogprops> = ({
         timeout={300}
         classNames={`${prefixCls}-alert`}
         in={visible}
-        style={{transformOrigin: `${mousePosition.x - elOffset.left}px ${mousePosition.y - elOffset.top}px`,}}
-
+        style={{transformOrigin: `${mousePosition.x - elOffset.current.left}px ${mousePosition.y - elOffset.current.top}px`,}}
+     
       >
         <div
           className={`${prefixCls}-content`}
-        
           ref={dialogRef}
         >
           {closable && (
@@ -130,6 +142,7 @@ const Dialog: FC<Dioalogprops> = ({
         </div>
       </CSSTransition>
     </div>
+    // </CSSTransition>
   );
 };
 

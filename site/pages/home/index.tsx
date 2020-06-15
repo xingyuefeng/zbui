@@ -10,11 +10,13 @@ export default function Home() {
   //   setCoords({x: event.pageX, y: event.pageY})
   // });
 
-
   return (
-    <div className="home"> 
+    <div className="home">
       <div className="desc">
-        基于TypeScript与React Hooks开发的ui组件库 <span role="img" aria-labelledby="rocket">>🚀🚀🚀</span>
+        基于TypeScript与React Hooks开发的ui组件库{" "}
+        <span role="img" aria-labelledby="rocket">
+          >🚀🚀🚀
+        </span>
       </div>
       <div className="desc">Happy Coding</div>
       <Button type="primary">
@@ -22,19 +24,34 @@ export default function Home() {
           查看组件
         </Link>
       </Button>
-      <Button type="primary" onClick={ () => { toggleDialog(true) } } style={{position: 'absolute', left: 20, top: 400}}>
+      <Button
+        type="primary"
+        onClick={() => {
+          toggleDialog(true);
+        }}
+        style={{ position: "absolute", left: 20, top: 400, zIndex: 10000 }}
+      >
         显示弹框
       </Button>
       <Dialog
         visible={visible}
         title="这是弹框标题"
-        footer={ <Button onClick={ () => { toggleDialog(false)}}>关闭</Button>}
-        onClose={() => { toggleDialog(false)}}
+        footer={
+          <Button
+            onClick={() => {
+              toggleDialog(false);
+            }}
+          >
+            关闭
+          </Button>
+        }
+        onClose={() => {
+          toggleDialog(false);
+        }}
         // getContainer=
       >
         <div>你总觉着自己如今正是栖栖遑遑</div>
       </Dialog>
-     
     </div>
   );
 }
