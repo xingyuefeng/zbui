@@ -20,7 +20,7 @@ npm test -- --coverage
 
 - [x] Portal
 - [ ] icons
-- [ ] Dialog  `coding`
+- [x] Dialog  `coding`
 - [ ] Input
 - [ ] Radio
 - [ ] Checkbox
