@@ -3,6 +3,7 @@
 .#{$prefixCls} {
   // width: 600px;
   // margin: 30px auto;
+
   &-mask {
     position: fixed;
     top: 0;
@@ -13,7 +14,7 @@
     background-color: rgba( $black, .8);
     height: 100%;
     filter: alpha(opacity=50);
-    z-index: 1050;
+    z-index: 1000;
     // opacity: 1;
     // display: block;
     // transition: opacity 300s;
@@ -23,23 +24,6 @@
       
     }
   }
-
-  &-alert-mask-enter {
-    opacity: 0;
-   
-  }
-  &-alert-mask-enter-active {
-    opacity: 1;
-    transition: opacity .3s
-  }
-  &-alert-mask-exit {
-    opacity: 1;
-  }
-  &-alert-mask-exit-active {
-    opacity: 0.1;
-    transition: opacity .3s
-  }
-
 
   &-title {
     margin: 0;
@@ -54,10 +38,23 @@
     top: 12px;
   }
 
+  &-wrap {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+  }
+
+
   &-content {
     position: relative;
     width: 600px;
-    margin: 10% auto;
+    margin: 8% auto;
     background-color: #ffffff;
     border: none;
     border-radius: 6px 6px;
@@ -68,7 +65,9 @@
     animation-fill-mode: both;
   }
 
+
   &-alert-enter {
+    display: block;
     opacity: 0;
     animation-duration: 0.3s;
     animation-fill-mode: both;
@@ -78,18 +77,22 @@
   &-alert-enter-active {
     animation-name: rcDialogZoomIn;
     animation-play-state: running;
-    
   }
   &-alert-exit {
     animation-duration: 0.3s;
     animation-fill-mode: both;
     animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);
     animation-play-state: paused;
+    // background-color: red;
   }
   &-alert-exit-active {
     animation-name: rcDialogZoomOut;
     animation-play-state: running;
   }
+
+  // &-alert-exit-done {
+  //   display: none;
+  // }
 
   @keyframes rcDialogZoomIn {
     0% {

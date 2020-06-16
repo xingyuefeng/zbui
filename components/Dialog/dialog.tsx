@@ -1,5 +1,11 @@
-import React, { FC, CSSProperties, ReactNode, useState, useRef, useEffect  } from "react";
-import { findDOMNode } from 'react-dom'
+import React, {
+  FC,
+  CSSProperties,
+  ReactNode,
+  useState,
+  useRef,
+} from "react";
+import { findDOMNode } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 import classnames from "classnames";
 import Button from "../Button";
@@ -8,12 +14,12 @@ import useEventListener from "../hooks/useEventListener";
 type IStringOrHtmlElement = string | HTMLElement;
 
 function getScroll(w: any, top?: boolean) {
-  let ret = w[`page${top ? 'Y' : 'X'}Offset`];
-  const method = `scroll${top ? 'Top' : 'Left'}`;
-  if (typeof ret !== 'number') {
+  let ret = w[`page${top ? "Y" : "X"}Offset`];
+  const method = `scroll${top ? "Top" : "Left"}`;
+  if (typeof ret !== "number") {
     const d = w.document;
     ret = d.documentElement[method];
-    if (typeof ret !== 'number') {
+    if (typeof ret !== "number") {
       ret = d.body[method];
     }
   }
@@ -33,13 +39,13 @@ function offset(el: any) {
   return pos;
 }
 
-
 export interface Dioalogprops {
   className?: string | undefined;
   closable?: boolean;
   prefixCls?: string;
   bodyStyle?: CSSProperties;
   maskStyle?: CSSProperties;
+  wrapStyle?: CSSProperties;
   visible: boolean;
   title?: string | ReactNode;
   footer?: ReactNode;
@@ -68,81 +74,90 @@ const Dialog: FC<Dioalogprops> = ({
   bodyStyle,
   footer,
   maskStyle,
+  wrapStyle,
   onClose = () => {},
 }) => {
-  const [mousePosition, serMousePosition] = useState({x: 0, y: 0});
-  const elOffset = useRef({left: 0, top: 0});
+  const [mousePosition, serMousePosition] = useState({ x: 0, y: 0 });
+  const [showTransition, serShowTransition] = useState(false);
+  const elOffset = useRef({ left: 0, top: 0 });
 
-  const dialogRef = useRef() as any
+  const dialogRef = useRef() as any;
   // console.log(elOffset);
   useEventListener("click", (event: MouseEvent) => {
+    console.log(event.pageY);
     if (visible) {
       const dialogNode = findDOMNode(dialogRef.current);
       const el = offset(dialogNode);
-      
-      elOffset.current = {
-        left: el.left, top: el.top
+      if (!mousePosition.x && !mousePosition.y) {
+        elOffset.current = {
+          left: el.left,
+          top: el.top,
+        };
+        serMousePosition({ x: event.pageX, y: event.pageY });
       }
-      serMousePosition({ x: event.pageX, y: event.pageY });
-    } else {
-      elOffset.current = {
-        left: 0, top: 0
-      }
-      serMousePosition({ x: 0, y: 0});
-    }
   
+    } 
+    // else {
+    //   elOffset.current = {
+    //     left: 0,
+    //     top: 0,
+    //   };
+    //   serMousePosition({ x: 0, y: 0 });
+    // }
   });
-
-
+  const forWrapStyle = visible || showTransition ? wrapStyle : { ...wrapStyle, display: 'none' }
   return (
-  //   <CSSTransition
-  //   timeout={300}
-  //   classNames={`${prefixCls}-alert-mask`}
-  //   in={visible}
- 
-  // >
-    <div
-      className={classnames(prefixCls, className, {
-        [prefixCls + "-mask"]: mask,
-        [prefixCls + "-mask-hidden"]: !visible,
-      })}
-      style={maskStyle}
-     
-    >
+    <div className={`${prefixCls}-dialog-root`}>
+      <div
+        className={classnames(className, {
+          [prefixCls + "-mask"]: mask,
+          [prefixCls + "-mask-hidden"]: !visible,
+        })}
+        style={maskStyle}
+      />
       <CSSTransition
         timeout={300}
         classNames={`${prefixCls}-alert`}
         in={visible}
-        style={{transformOrigin: `${mousePosition.x - elOffset.current.left}px ${mousePosition.y - elOffset.current.top}px`,}}
-     
+        onEnter={() => {serShowTransition(true)}}
+        onExited={() => {serShowTransition(false)}}
+        style={{
+          transformOrigin: `${mousePosition.x - elOffset.current.left}px ${
+            mousePosition.y - elOffset.current.top
+          }px`,
+          ...forWrapStyle
+        }}
       >
+        
         <div
-          className={`${prefixCls}-content`}
-          ref={dialogRef}
+          className={`${prefixCls}-wrap`}
+          tabIndex={-1}
         >
-          {closable && (
-            <Button
-              className={`${prefixCls}-close`}
-              type="primary"
-              size="sm"
-              onClick={() => onClose()}
-            >
-              X
-            </Button>
-          )}
-          {title && (
-            <div className={`${prefixCls}-header`}>
-              <div className={`${prefixCls}-title`}>{title}</div>
+        <div className={`${prefixCls}-content`} ref={dialogRef} role="dialog">
+            {closable && (
+              <Button
+                className={`${prefixCls}-close`}
+                type="primary"
+                size="sm"
+                onClick={() => onClose()}
+              >
+                X
+              </Button>
+            )}
+            {title && (
+              <div className={`${prefixCls}-header`}>
+                <div className={`${prefixCls}-title`}>{title}</div>
+              </div>
+            )}
+            <div className={`${prefixCls}-body`} style={bodyStyle}>
+              {children}
             </div>
-          )}
-          <div className={`${prefixCls}-body`} style={bodyStyle}>
-            {children}
+            {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
           </div>
-          {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
+        
         </div>
       </CSSTransition>
     </div>
-    // </CSSTransition>
   );
 };
 
