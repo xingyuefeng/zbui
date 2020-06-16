@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/zbui/static/css/main.87cfdd7e.chunk.css",
-    "main.js": "/zbui/static/js/main.60b282f6.chunk.js",
-    "main.js.map": "/zbui/static/js/main.60b282f6.chunk.js.map",
-    "runtime-main.js": "/zbui/static/js/runtime-main.16c3f993.js",
-    "runtime-main.js.map": "/zbui/static/js/runtime-main.16c3f993.js.map",
-    "static/js/2.fe07ce96.chunk.js": "/zbui/static/js/2.fe07ce96.chunk.js",
-    "static/js/2.fe07ce96.chunk.js.map": "/zbui/static/js/2.fe07ce96.chunk.js.map",
-    "static/js/3.3a074a0d.chunk.js": "/zbui/static/js/3.3a074a0d.chunk.js",
-    "static/js/3.3a074a0d.chunk.js.map": "/zbui/static/js/3.3a074a0d.chunk.js.map",
+    "main.css": "/zbui/static/css/main.031ce14f.chunk.css",
+    "main.js": "/zbui/static/js/main.c9079b79.chunk.js",
+    "main.js.map": "/zbui/static/js/main.c9079b79.chunk.js.map",
+    "runtime-main.js": "/zbui/static/js/runtime-main.a46f94d5.js",
+    "runtime-main.js.map": "/zbui/static/js/runtime-main.a46f94d5.js.map",
+    "static/js/2.31155fc3.chunk.js": "/zbui/static/js/2.31155fc3.chunk.js",
+    "static/js/2.31155fc3.chunk.js.map": "/zbui/static/js/2.31155fc3.chunk.js.map",
+    "static/js/3.cd8a99a9.chunk.js": "/zbui/static/js/3.cd8a99a9.chunk.js",
+    "static/js/3.cd8a99a9.chunk.js.map": "/zbui/static/js/3.cd8a99a9.chunk.js.map",
+    "static/js/4.13eb96f8.chunk.js": "/zbui/static/js/4.13eb96f8.chunk.js",
+    "static/js/4.13eb96f8.chunk.js.map": "/zbui/static/js/4.13eb96f8.chunk.js.map",
     "index.html": "/zbui/index.html",
-    "precache-manifest.7c6d1259fda3b50e99f629eecf436693.js": "/zbui/precache-manifest.7c6d1259fda3b50e99f629eecf436693.js",
+    "precache-manifest.41609def81be8ca13c2e5be6a7dad66f.js": "/zbui/precache-manifest.41609def81be8ca13c2e5be6a7dad66f.js",
     "service-worker.js": "/zbui/service-worker.js",
-    "static/css/main.87cfdd7e.chunk.css.map": "/zbui/static/css/main.87cfdd7e.chunk.css.map",
-    "static/js/2.fe07ce96.chunk.js.LICENSE.txt": "/zbui/static/js/2.fe07ce96.chunk.js.LICENSE.txt"
+    "static/css/main.031ce14f.chunk.css.map": "/zbui/static/css/main.031ce14f.chunk.css.map",
+    "static/js/2.31155fc3.chunk.js.LICENSE.txt": "/zbui/static/js/2.31155fc3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.16c3f993.js",
-    "static/js/2.fe07ce96.chunk.js",
-    "static/css/main.87cfdd7e.chunk.css",
-    "static/js/main.60b282f6.chunk.js"
+    "static/js/runtime-main.a46f94d5.js",
+    "static/js/2.31155fc3.chunk.js",
+    "static/css/main.031ce14f.chunk.css",
+    "static/js/main.c9079b79.chunk.js"
   ]
 }
