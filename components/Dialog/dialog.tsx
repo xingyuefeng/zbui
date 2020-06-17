@@ -84,7 +84,6 @@ const Dialog: FC<Dioalogprops> = ({
   const dialogRef = useRef() as any;
   // console.log(elOffset);
   useEventListener("click", (event: MouseEvent) => {
-    console.log(event.pageY);
     if (visible) {
       const dialogNode = findDOMNode(dialogRef.current);
       const el = offset(dialogNode);
@@ -96,14 +95,7 @@ const Dialog: FC<Dioalogprops> = ({
         serMousePosition({ x: event.pageX, y: event.pageY });
       }
   
-    } 
-    // else {
-    //   elOffset.current = {
-    //     left: 0,
-    //     top: 0,
-    //   };
-    //   serMousePosition({ x: 0, y: 0 });
-    // }
+    }
   });
   const forWrapStyle = visible || showTransition ? wrapStyle : { ...wrapStyle, display: 'none' }
   return (

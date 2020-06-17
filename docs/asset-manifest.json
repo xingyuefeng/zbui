@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/zbui/static/css/main.031ce14f.chunk.css",
-    "main.js": "/zbui/static/js/main.c9079b79.chunk.js",
-    "main.js.map": "/zbui/static/js/main.c9079b79.chunk.js.map",
+    "main.js": "/zbui/static/js/main.24be1b2a.chunk.js",
+    "main.js.map": "/zbui/static/js/main.24be1b2a.chunk.js.map",
     "runtime-main.js": "/zbui/static/js/runtime-main.a46f94d5.js",
     "runtime-main.js.map": "/zbui/static/js/runtime-main.a46f94d5.js.map",
     "static/js/2.31155fc3.chunk.js": "/zbui/static/js/2.31155fc3.chunk.js",
@@ -12,7 +12,7 @@
     "static/js/4.13eb96f8.chunk.js": "/zbui/static/js/4.13eb96f8.chunk.js",
     "static/js/4.13eb96f8.chunk.js.map": "/zbui/static/js/4.13eb96f8.chunk.js.map",
     "index.html": "/zbui/index.html",
-    "precache-manifest.41609def81be8ca13c2e5be6a7dad66f.js": "/zbui/precache-manifest.41609def81be8ca13c2e5be6a7dad66f.js",
+    "precache-manifest.03972bff65fe7e6234c8a77e33342ea4.js": "/zbui/precache-manifest.03972bff65fe7e6234c8a77e33342ea4.js",
     "service-worker.js": "/zbui/service-worker.js",
     "static/css/main.031ce14f.chunk.css.map": "/zbui/static/css/main.031ce14f.chunk.css.map",
     "static/js/2.31155fc3.chunk.js.LICENSE.txt": "/zbui/static/js/2.31155fc3.chunk.js.LICENSE.txt"
@@ -21,6 +21,6 @@
     "static/js/runtime-main.a46f94d5.js",
     "static/js/2.31155fc3.chunk.js",
     "static/css/main.031ce14f.chunk.css",
-    "static/js/main.c9079b79.chunk.js"
+    "static/js/main.24be1b2a.chunk.js"
   ]
 }

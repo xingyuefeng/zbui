@@ -24,6 +24,7 @@ const LazyComponent = (props: any) => {
   loadable(props.route.module)
     .load()
     .then((module: any) => {
+      // console.log(module.default);
       setMd(module.default);
     });
   return (
@@ -37,25 +38,24 @@ const LazyComponent = (props: any) => {
 };
 
 export default function Component() {
-  const [routes, setRoutes] = useState<ReactNode[]>([]);
-
+  const routes = [] as ReactNode[]
   if (routes.length === 0) {
     renderRoutes(siteConfig);
   }
   function renderRoutes(configs: ConfigInfo): void {
     const routeKyes = Object.keys(configs);
+ 
     routeKyes.forEach((item) => {
       if (Array.isArray(configs[item])) {
-        (configs[item] as MenuRoute[]).forEach((route: MenuRoute) => {
-          setRoutes(
-            routes.concat(
+        (configs[item] as MenuRoute[]).forEach((route: MenuRoute) => { 
+          console.log(routes);
+            routes.push(
               <Route
                 key={route.name}
                 path={`/components/${route.name}`}
                 component={() => <LazyComponent route={route} />}
               />
             )
-          );
         });
       } else {
         let other = siteConfig as ConfigInfo
@@ -63,6 +63,7 @@ export default function Component() {
       }
     });
   }
+  console.log(routes);
   return (
     <div className="component-container">
       <Slider menus={siteConfig} />
