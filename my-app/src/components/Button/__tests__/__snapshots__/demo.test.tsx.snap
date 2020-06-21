@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button disabled 1`] = `
+<button
+  class="btn btn-default"
+  disabled=""
+>
+  foo
+</button>
+`;
+
+exports[`Button render correctly 1`] = `
+<button
+  class="btn btn-default"
+>
+  hello
+</button>
+`;
+
+exports[`Button should support link button 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "class": "btn btn-link",
+      "href": "http://1.com",
+      "target": "_blank",
+    },
+    "children": Array [
+      Object {
+        "data": "link button",
+        "next": null,
+        "parent": [Circular],
+        "prev": null,
+        "type": "text",
+      },
+    ],
+    "name": "a",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+      "href": undefined,
+      "target": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+      "href": undefined,
+      "target": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;

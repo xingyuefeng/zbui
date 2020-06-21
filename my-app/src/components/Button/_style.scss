@@ -1,0 +1,55 @@
+.btn {
+  display: inline-block;
+  font-size: $btn-font-size;
+  line-height: $btn-line-height;
+  font-weight: $btn-font-weight;
+  border: $border-width solid transparent;
+  box-shadow: $btn-box-shadow;
+  cursor: pointer;
+  transition: $btn-transition;
+  white-space: nowrap;
+  outline: none;
+  @include button-size($btn-padding-y, $btn-padding-x,$font-size-base, $border-radius);
+  &.disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: $btn-disabled-opacity;
+    box-shadow: none;
+    > * {
+      pointer-events: none;
+    }
+  }
+}
+
+.btn-primary {
+  @include button-style($primary, $white);
+}
+
+.btn-default {
+  @include button-style($dark, $black, lighten($gray-500, 10%));
+}
+
+.btn-danger {
+  @include button-style($danger, $white);
+}
+
+.btn-link {
+  color: $btn-link-color;
+  box-shadow: none;
+  text-decoration: none;
+  &:hover {
+    color: $btn-link-hover-color;
+  }
+  &:focus {
+    color: $btn-link-hover-color;
+  }
+}
+
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $border-radius-lg)
+}
+
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $border-radius-sm)
+}
+
