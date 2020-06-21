@@ -47,8 +47,7 @@ export default function Component() {
  
     routeKyes.forEach((item) => {
       if (Array.isArray(configs[item])) {
-        (configs[item] as MenuRoute[]).forEach((route: MenuRoute) => { 
-          console.log(routes);
+        (configs[item] as MenuRoute[]).forEach((route: MenuRoute) => {
             routes.push(
               <Route
                 key={route.name}
@@ -63,7 +62,6 @@ export default function Component() {
       }
     });
   }
-  console.log(routes);
   return (
     <div className="component-container">
       <Slider menus={siteConfig} />

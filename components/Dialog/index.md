@@ -10,7 +10,6 @@ import { Dialog, Button } from 'zbui';
 
 const Demo = () => {
    const [visible, toggleDialog] = React.useState(false);
-
   return  <div>
   
   
@@ -37,7 +36,6 @@ const Demo = () => {
         onClose={() => {
           toggleDialog(false);
         }}
-        // getContainer=
       >
         <div>你总觉着自己如今正是栖栖遑遑</div>
       </Dialog>

@@ -1,4 +1,5 @@
 import { MutableRefObject, useEffect, useRef } from 'react';
+import useSSR from 'use-ssr'
 
 type Target = HTMLElement | Window;
 type Options = { dom?: Dom; capture?: boolean; once?: boolean; passive?: boolean; }
@@ -23,12 +24,14 @@ function useEventListener<T extends Target = HTMLElement>(
 ) {
   const ref = useRef<T>();
   const savedHandler = useRef<Function>();
+  const { isBrowser } = useSSR()
 
   useEffect(() => {
     savedHandler.current = handler;
   }, [handler]);
   
   useEffect(() => {
+    if (!isBrowser) return
     const passedInElement = options &&
       (typeof options.dom === 'function' ? options.dom() : options.dom);
     let element = passedInElement ? passedInElement : ref.current || window;
@@ -39,18 +42,18 @@ function useEventListener<T extends Target = HTMLElement>(
     ): EventListenerOrEventListenerObject | AddEventListenerOptions =>
       savedHandler.current && savedHandler.current(event);
 
-    element.addEventListener(eventName, eventListener,{
+      isBrowser && element.addEventListener(eventName, eventListener,{
       capture:options?.capture,
       once:options?.once,
       passive:options?.passive
     });
 
     return () => {
-      element.removeEventListener(eventName, eventListener,{
+      isBrowser && element.removeEventListener(eventName, eventListener,{
         capture:options?.capture,
       });
     };
-  }, [eventName, options]);
+  }, [eventName, isBrowser, options]);
   return ref;
 }
 

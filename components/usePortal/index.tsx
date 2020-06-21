@@ -10,6 +10,7 @@ import {
   ReactNode
 } from "react";
 import { createPortal, findDOMNode } from "react-dom";
+import useSSR from 'use-ssr'
 
 type HTMLElRef = MutableRefObject<HTMLElement>;
 
@@ -55,6 +56,7 @@ export default function usePortal({
   onPortalClick,
   ...eventHandlers
 }: UsePortalOptions = {}) {
+  const { isServer, isBrowser } = useSSR()
   const [isOpen, makeOpen] = useState(defaultIsOpen);
   // we use this ref because `isOpen` is stale for handleOutsideMouseClick
 
@@ -67,15 +69,16 @@ export default function usePortal({
   }, []);
 
   const targetEl = useRef() as HTMLElRef; // this is the element you are clicking/hovering/whatever, to trigger opening the portal
-  const portal = useRef(document.createElement("div")) as HTMLElRef;
+  const portal =  useRef( isBrowser ? document.createElement("div") : null) as HTMLElRef;
 
   useEffect(() => {
-    if (!portal.current) portal.current = document.createElement("div");
-  }, [portal]);
+    if (isBrowser && !portal.current) portal.current = document.createElement('div')
+  }, [isBrowser, portal])
 
   const elToMountTo = useMemo(() => {
+    if (isServer) return
     return (bindTo && findDOMNode(bindTo)) || document.body;
-  }, [bindTo]);
+  }, [bindTo, isServer]);
 
   const createCustomEvent = (e: any) => {
     if (!e) return { portal, targetEl, event: e };
@@ -96,7 +99,7 @@ export default function usePortal({
     eventHandlers
   ).reduce<any>((acc, [handlerName, eventHandler]) => {
     acc[handlerName] = (event?: SyntheticEvent<any, Event>) => {
-
+      if (isServer) return
       eventHandler(createCustomEvent(event));
     };
     return acc;
@@ -104,6 +107,7 @@ export default function usePortal({
 
   const openPortal = useCallback(
     (e: any) => {
+      if (isServer) return
       const customEvent = createCustomEvent(e);
       // for some reason, when we don't have the event argument, there
       // is a weird race condition. Would like to see if we can remove
@@ -117,15 +121,16 @@ export default function usePortal({
       
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [portal, targetEl, onOpen, setOpen]
+    [portal, targetEl, onOpen, setOpen, isServer]
   );
 
   const closePortal = useCallback((e: any) => {
+    if (isServer) return
     const customEvent = createCustomEvent(e)
     if (onClose && open.current) onClose(customEvent)
     if (open.current) setOpen(false)
      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onClose, setOpen])
+  }, [onClose, setOpen, isServer])
 
 
   const togglePortal = useCallback((e: SyntheticEvent<any, Event>): void => 
@@ -143,11 +148,11 @@ export default function usePortal({
     if (containsTarget(portal) || (e as any).button !== 0 || !open.current || containsTarget(targetEl)) return
     if (closeOnOutsideClick) closePortal(e)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [closePortal, closeOnOutsideClick, portal])
+  }, [isServer, closePortal, closeOnOutsideClick, portal])
 
   const handleMouseDown = useCallback((e: MouseEvent): void => {
   
-    if (!(portal.current instanceof HTMLElement)) return
+    if (isServer || !(portal.current instanceof HTMLElement)) return
     const customEvent = createCustomEvent(e)
     if (portal.current.contains && portal.current.contains(customEvent.target as HTMLElement) && onPortalClick) onPortalClick(customEvent)
     handleOutsideMouseClick(e)
@@ -156,6 +161,7 @@ export default function usePortal({
 
 
   useEffect(() => {
+    if (isServer) return
     document.addEventListener('keydown', handleKeydown)
     document.addEventListener('mousedown', handleMouseDown as any)
     if (!(elToMountTo instanceof HTMLElement) || !(portal.current instanceof HTMLElement)) return

@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from "react";
 import { findDOMNode } from "react-dom";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition  } from "react-transition-group";
 import classnames from "classnames";
 import Button from "../Button";
 import useEventListener from "../hooks/useEventListener";
@@ -82,7 +82,6 @@ const Dialog: FC<Dioalogprops> = ({
   const elOffset = useRef({ left: 0, top: 0 });
 
   const dialogRef = useRef() as any;
-  // console.log(elOffset);
   useEventListener("click", (event: MouseEvent) => {
     if (visible) {
       const dialogNode = findDOMNode(dialogRef.current);
