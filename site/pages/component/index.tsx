@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import CodeBlock from "../../components/MarkDown";
 import Slider from "../../components/Slider";
 import siteConfig from "../../site.config";
-import home from "@/README.md";
+import home from "../../../README.md";
 
 type MenuRoute = {
   name: string;

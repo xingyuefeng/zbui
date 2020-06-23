@@ -3,7 +3,7 @@ export default {
     {
       name: 'QuickStart',
       description: '快速上手',
-      module: () => import('@/README.md'),
+      module: () => import('../README.md'),
     },
   ],
   components: {
@@ -11,12 +11,12 @@ export default {
       {
         name: 'Button',
         description: '按钮',
-        module: () => import('@/components/Button/index.md'),
+        module: () => import('../components/Button/index.md'),
       },
       {
         name: 'Dialog',
         description: '弹出框',
-        module: () => import('@/components/Dialog/index.md'),
+        module: () => import('../components/Dialog/index.md'),
       },
     ]
   }

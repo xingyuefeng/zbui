@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { transform } from '@babel/standalone';
-import * as zbui from '../../../components';
+import * as zbui from 'zbui';
 
 
 export default class Code extends Component {

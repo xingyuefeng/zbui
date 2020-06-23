@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Dialog } from "@/components";
+import { Button, Dialog } from "zbui";
 import { CSSTransition  } from "react-transition-group";
 
 
@@ -33,7 +33,7 @@ export default function Home() {
       >
         显示弹框
       </Button>
-      <CSSTransition in={visible} timeout={200} classNames="my-node">
+      <CSSTransition in={true} timeout={200} classNames="my-node">
         <div>
           123
         </div>
